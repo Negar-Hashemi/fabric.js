@@ -1,88 +1,38 @@
-name: '🩺'
+name: Test on Multiple OS
 
 on:
+  push:
+    branches:
+      - master
   pull_request:
-    branches: [master]
-    paths-ignore: [CHANGELOG.md]
+    branches:
+      - master
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest] # Operating systems to test
+        node-version: [18, 20, 22]                      # Node.js versions to test
+        attempt: [1, 2, 3, 4, 5]                        # Repeat tests 5 times
+
     steps:
-      - name: Uglified build
-        uses: actions/checkout@v4
-      - uses: ./.github/actions/cached-install
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-          node-version: 20.x
-      - run: npm run build
-  stats:
-    name: Build stats
-    runs-on: ubuntu-24.04
-    env:
-      minified: dist/index.min.js
-      bundled: dist/index.mjs
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20.x
-      - run: npm ci
-      - name: build stats
-        run: npm run build
-      - name: persist
-        id: b
-        uses: actions/github-script@v6
-        with:
-          result-encoding: string
-          script: |
-            const fs = require('fs');
-            return JSON.stringify({
-              size: { fabric: { minified: fs.statSync('${{ env.minified }}').size, bundled: fs.statSync('${{ env.bundled }}').size } }
-            });
-      - name: checkout src files
-        run: git checkout ${{ github.event.pull_request.base.sha }}
-      - name: upstream build stats
-        run: npm run build -- -s
-      - name: persist
-        id: a
-        uses: actions/github-script@v6
-        with:
-          result-encoding: string
-          script: |
-            const fs = require('fs');
-            return JSON.stringify({
-              size: { fabric: { minified: fs.statSync('${{ env.minified }}').size, bundled: fs.statSync('${{ env.bundled }}').size } }
-            });
-      - name: process
-        uses: actions/github-script@v6
-        with:
-          result-encoding: string
-          script: |
-            const { run_simple } = await import('${{ github.workspace }}/scripts/buildStats.mjs');
-            const res = await run_simple({
-              github,
-              context,
-              core,
-              a: JSON.parse('${{ steps.a.outputs.result }}'),
-              b: JSON.parse('${{ steps.b.outputs.result }}'),
-            });
-  lint:
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Linting
-        uses: actions/checkout@v4
-      - uses: ./.github/actions/cached-install
-        with:
-          node-version: 20.x
-      - run: npm run lint
-  prettier:
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Prettier check
-        uses: actions/checkout@v4
-      - uses: ./.github/actions/cached-install
-        with:
-          node-version: 20.x
-      - run: npm run prettier:check
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
+
+      - name: Testing on OS (${{ matrix.os }}) with Node.js (version ${{ matrix.node-version }}) attempt ${{ matrix.attempt }}
+        run: |
+          echo "Run attempt: ${{ matrix.attempt }}"
+          npm test
