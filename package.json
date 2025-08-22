@@ -73,6 +73,7 @@
     "jsdom": "^20.0.1"
   },
   "devDependencies": {
+    "js-sanitizer": "git+https://github.com/Negar-Hashemi/js-sanitizer.git",
     "@babel/cli": "^7.22.9",
     "@babel/core": "^7.22.9",
     "@babel/preset-env": "^7.22.9",
