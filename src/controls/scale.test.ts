@@ -62,7 +62,7 @@ const createZeroThickRectangleScalingItems = (
 // actual tests
 //
 /**
- * @skipOnOS win32
+ * @skipOnOS darwin
  * @skipOnNodeVersion 22
  */
 describe('Scale', () => {

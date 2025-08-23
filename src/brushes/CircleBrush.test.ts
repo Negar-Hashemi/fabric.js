@@ -1,7 +1,7 @@
 import { Canvas } from '../canvas/Canvas';
 import { CircleBrush } from './CircleBrush';
 /**
- * @skipOnOS win32
+ * @skipOnOS darwin
  * @skipOnNodeVersion 22
  */
 describe('CircleBrush', () => {

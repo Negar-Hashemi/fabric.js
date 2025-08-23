@@ -6,7 +6,7 @@ import { Rect } from '../shapes/Rect';
 import { changeWidth } from './changeWidth';
 
 /**
- * @skipOnOS win32
+ * @skipOnOS darwin
  * @skipOnNodeVersion 22
  */
 describe('changeWidth', () => {

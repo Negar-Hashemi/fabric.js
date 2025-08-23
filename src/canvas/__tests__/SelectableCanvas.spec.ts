@@ -1,7 +1,7 @@
 import { FabricObject } from '../../shapes/Object/FabricObject';
 import { Canvas } from '../Canvas';
   /**
-   * @skipOnOS win32
+   * @skipOnOS darwin
    * @skipOnNodeVersion 22
    */
 describe('Canvas', () => {

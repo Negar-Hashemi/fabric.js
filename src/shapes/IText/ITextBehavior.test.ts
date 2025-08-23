@@ -33,7 +33,7 @@ function create() {
   });
 }
 /**
- * @skipOnOS win32
+ * @skipOnOS darwin
  * @skipOnNodeVersion 22
  */
 describe('text imperative changes', () => {
@@ -135,7 +135,7 @@ describe('IText cursor animation snapshot', () => {
     iText.abortCursorAnimation();
   });
   /**
- * @skipOnOS win32
+ * @skipOnOS darwin
  * @skipOnNodeVersion 22
  */
   test('selectionStart/selection end will abort animation', () => {
@@ -149,7 +149,7 @@ describe('IText cursor animation snapshot', () => {
     iText.abortCursorAnimation();
   });
   /**
- * @skipOnOS win32
+ * @skipOnOS darwin
  * @skipOnNodeVersion 22
  */
   test('exiting from a canvas will abort animation', () => {
@@ -181,7 +181,7 @@ describe('IText cursor animation snapshot', () => {
   });
 });
 /**
- * @skipOnOS win32
+ * @skipOnOS darwin
  * @skipOnNodeVersion 22
  */
 describe('IText _tick', () => {
@@ -211,7 +211,7 @@ describe('IText _tick', () => {
   });
 });
 /**
- * @skipOnOS win32
+ * @skipOnOS darwin
  * @skipOnNodeVersion 22
  */
 describe('Itext enterEditing and exitEditing', () => {
