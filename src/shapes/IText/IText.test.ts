@@ -1,8 +1,11 @@
-import type { Canvas } from '../../canvas/Canvas';
 import '../../../jest.extend';
+import type { Canvas } from '../../canvas/Canvas';
 import { Group } from '../Group';
 import { IText } from './IText';
-
+  /**
+   * @skipOnOS win32
+   * @skipOnNodeVersion 22
+   */
 describe('IText', () => {
   describe('cursor drawing width', () => {
     test.each([

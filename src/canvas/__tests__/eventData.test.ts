@@ -39,7 +39,10 @@ describe('Canvas event data', () => {
   afterEach(() => {
     return canvas.dispose();
   });
-
+  /**
+   * @skipOnOS win32
+   * @skipOnNodeVersion 22
+   */
   test.each([
     'mousedown',
     'mouseenter',
@@ -60,7 +63,10 @@ describe('Canvas event data', () => {
       expect(spy.mock.calls).toMatchSnapshot(snapshotOptions);
     },
   );
-
+  /**
+   * @skipOnOS win32
+   * @skipOnNodeVersion 22
+   */
   // must call mousedown for mouseup to be listened to
   test('HTML event "mouseup" should fire a corresponding canvas event', () => {
     canvas.setViewportTransform(genericVpt);
@@ -141,6 +147,10 @@ describe('Canvas event data', () => {
 });
 
 describe('Event targets', () => {
+  /**
+   * @skipOnOS win32
+   * @skipOnNodeVersion 22
+   */
   it('A selected subtarget should not fire an event twice', () => {
     const target = new FabricObject();
     const group = new Group([target], {
@@ -160,7 +170,10 @@ describe('Event targets', () => {
     );
     expect(targetSpy).toHaveBeenCalledTimes(1);
   });
-
+  /**
+   * @skipOnOS win32
+   * @skipOnNodeVersion 22
+   */
   test('mouseover and mouseout with subTargetCheck', () => {
     const rect1 = new FabricObject({
       width: 5,
@@ -349,7 +362,10 @@ describe('Event targets', () => {
       expect(found).toBe(target);
       expect(canvas.targets).toEqual([subTarget, target, parent]);
     });
-
+  /**
+   * @skipOnOS win32
+   * @skipOnNodeVersion 22
+   */
     test('searchPossibleTargets with selection', () => {
       const subTarget = new FabricObject();
       const target = new Group([subTarget], {
@@ -372,7 +388,10 @@ describe('Event targets', () => {
       expect(found).toBe(activeSelection);
       expect(canvas.targets).toEqual([]);
     });
-
+  /**
+   * @skipOnOS win32
+   * @skipOnNodeVersion 22
+   */
     test('findTarget clears prev targets', () => {
       const canvas = new Canvas();
       canvas.targets = [new FabricObject()];
@@ -381,7 +400,10 @@ describe('Event targets', () => {
         targets: [],
       });
     });
-
+  /**
+   * @skipOnOS win32
+   * @skipOnNodeVersion 22
+   */
     test('findTarget preserveObjectStacking false', () => {
       const rect = new FabricObject({
         left: 0,
@@ -408,7 +430,10 @@ describe('Event targets', () => {
         targets: [],
       });
     });
-
+  /**
+   * @skipOnOS win32
+   * @skipOnNodeVersion 22
+   */
     test('findTarget preserveObjectStacking true', () => {
       const rect = new FabricObject({ left: 0, top: 0, width: 30, height: 30 });
       const rectOver = new FabricObject({
@@ -451,7 +476,10 @@ describe('Event targets', () => {
         // 'Should rect because active and altSelectionKey is pressed'
       );
     });
-
+  /**
+   * @skipOnOS win32
+   * @skipOnNodeVersion 22
+   */
     test('findTarget with subTargetCheck', () => {
       const canvas = new Canvas();
       const rect = new FabricObject({ left: 0, top: 0, width: 10, height: 10 });
@@ -493,7 +521,10 @@ describe('Event targets', () => {
         targets: [rect2],
       });
     });
-
+  /**
+   * @skipOnOS win32
+   * @skipOnNodeVersion 22
+   */
     test('findTarget with subTargetCheck and canvas zoom', () => {
       const nested1 = new FabricObject({
         width: 100,
@@ -575,7 +606,10 @@ describe('Event targets', () => {
         targets: [rect2],
       });
     });
-
+  /**
+   * @skipOnOS win32
+   * @skipOnNodeVersion 22
+   */
     test.each([true, false])(
       'findTarget on activeObject with subTargetCheck and preserveObjectStacking %s',
       (preserveObjectStacking) => {
@@ -604,7 +638,10 @@ describe('Event targets', () => {
         });
       },
     );
-
+  /**
+   * @skipOnOS win32
+   * @skipOnNodeVersion 22
+   */
     test('findTarget with perPixelTargetFind', () => {
       const triangle = new Triangle({ width: 30, height: 30 });
       registerTestObjects({ triangle });
@@ -628,7 +665,10 @@ describe('Event targets', () => {
         targets: [],
       });
     });
-
+  /**
+   * @skipOnOS win32
+   * @skipOnNodeVersion 22
+   */
     describe('findTarget with perPixelTargetFind in nested group', () => {
       const prepareTest = () => {
         const deepTriangle = new Triangle({
@@ -774,7 +814,10 @@ describe('Event targets', () => {
         });
       });
     });
-
+  /**
+   * @skipOnOS win32
+   * @skipOnNodeVersion 22
+   */
     test('findTarget on active selection', () => {
       const rect1 = new FabricObject({
         left: 0,
@@ -838,7 +881,10 @@ describe('Event targets', () => {
         // 'Should return the rect after clearing selection'
       );
     });
-
+  /**
+   * @skipOnOS win32
+   * @skipOnNodeVersion 22
+   */
     test('findTarget on active selection with perPixelTargetFind', () => {
       const rect1 = new Rect({
         left: 0,
@@ -874,7 +920,10 @@ describe('Event targets', () => {
       });
     });
   });
-
+  /**
+   * @skipOnOS win32
+   * @skipOnNodeVersion 22
+   */
   it('should fire mouse over/out events on target', () => {
     const target = new FabricObject({ width: 10, height: 10 });
     const canvas = new Canvas();

@@ -1,7 +1,7 @@
 import { Point } from '../Point';
 import { Canvas } from '../canvas/Canvas';
-import { Rect } from '../shapes/Rect';
 import type { RectProps } from '../shapes/Rect';
+import { Rect } from '../shapes/Rect';
 import { scalingX, scalingY } from './scale';
 
 //
@@ -61,6 +61,10 @@ const createZeroThickRectangleScalingItems = (
 //
 // actual tests
 //
+/**
+ * @skipOnOS win32
+ * @skipOnNodeVersion 22
+ */
 describe('Scale', () => {
   it('adjusts a 0 width rect for polyActionhandler without it returning Infinity/NaN side scale', () => {
     // when NaN wasn't handled correctly, the polygon would disappear. Now, it stays

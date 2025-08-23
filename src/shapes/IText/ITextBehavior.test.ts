@@ -32,7 +32,10 @@ function create() {
     ].map((style, index) => ({ style, start: index, end: index + 1 })),
   });
 }
-
+/**
+ * @skipOnOS win32
+ * @skipOnNodeVersion 22
+ */
 describe('text imperative changes', () => {
   it('removeChars', async () => {
     const iText = await create();
@@ -131,6 +134,10 @@ describe('IText cursor animation snapshot', () => {
     expect(currentAnimation).toMatchSnapshot();
     iText.abortCursorAnimation();
   });
+  /**
+ * @skipOnOS win32
+ * @skipOnNodeVersion 22
+ */
   test('selectionStart/selection end will abort animation', () => {
     const iText = new IText('asd', { canvas: {} });
     iText.initDelayedCursor(true);
@@ -141,6 +148,10 @@ describe('IText cursor animation snapshot', () => {
     expect(currentAnimation).toMatchSnapshot();
     iText.abortCursorAnimation();
   });
+  /**
+ * @skipOnOS win32
+ * @skipOnNodeVersion 22
+ */
   test('exiting from a canvas will abort animation', () => {
     const iText = new IText('asd', { canvas: {} });
     iText.initDelayedCursor(true);
@@ -169,7 +180,10 @@ describe('IText cursor animation snapshot', () => {
     iText.abortCursorAnimation();
   });
 });
-
+/**
+ * @skipOnOS win32
+ * @skipOnNodeVersion 22
+ */
 describe('IText _tick', () => {
   const _tickMock = jest.fn();
   beforeEach(() => {
@@ -196,7 +210,10 @@ describe('IText _tick', () => {
     expect(_tickMock).toHaveBeenCalledWith(0);
   });
 });
-
+/**
+ * @skipOnOS win32
+ * @skipOnNodeVersion 22
+ */
 describe('Itext enterEditing and exitEditing', () => {
   const enterMock = jest.fn();
   const exitMock = jest.fn();

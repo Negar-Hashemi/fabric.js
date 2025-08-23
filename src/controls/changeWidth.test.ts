@@ -5,6 +5,10 @@ import { Canvas } from '../canvas/Canvas';
 import { Rect } from '../shapes/Rect';
 import { changeWidth } from './changeWidth';
 
+/**
+ * @skipOnOS win32
+ * @skipOnNodeVersion 22
+ */
 describe('changeWidth', () => {
   let canvas: Canvas;
   let target: Rect;

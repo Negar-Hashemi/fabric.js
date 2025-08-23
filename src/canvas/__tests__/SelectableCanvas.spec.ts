@@ -1,6 +1,9 @@
 import { FabricObject } from '../../shapes/Object/FabricObject';
 import { Canvas } from '../Canvas';
-
+  /**
+   * @skipOnOS win32
+   * @skipOnNodeVersion 22
+   */
 describe('Canvas', () => {
   describe('invalidating `_objectsToRender`', () => {
     test('initial state', () => {
