@@ -7,7 +7,7 @@ import { IText } from './IText';
 const keybEventShiftFalse = { shiftKey: false } as KeyboardEvent;
 const keybEventShiftTrue = { shiftKey: true } as KeyboardEvent;
 /**
- * @skipOnOS win32
+ * @skipOnOS darwin
  * @skipOnNodeVersion 22
  */
 describe('IText move cursor', () => {
